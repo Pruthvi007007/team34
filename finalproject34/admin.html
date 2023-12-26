@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Page</title>
+  <style>
+    /* Add some basic styling for the table */
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <center><h1>Centers</h1></center>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Shop Name</th>
+        <th>Owner Name</th>
+        <th>Number</th>
+        <th>Gmail</th>
+        <th>Location</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody id="itemsTable">
+      <!-- Table rows will be populated dynamically -->
+    </tbody>
+  </table>
+
+  <script>
+    // Simulated signed-in items (replace this with your actual data)
+    const signedInItems = [
+      { shopName: 'Example Shop', ownerName: 'John Doe', number: '1234567890', gmail: 'example@example.com', location: 'Example Location', username: 'exampleuser' },
+      { shopName: 'Another Shop', ownerName: 'Jane Smith', number: '9876543210', gmail: 'another@example.com', location: 'Another Location', username: 'anotheruser' }
+      // Add more items as needed
+    ];
+
+    // Function to display items in the table
+    function displayItems() {
+      const tableBody = document.getElementById('itemsTable');
+
+      signedInItems.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.shopName}</td>
+          <td>${item.ownerName}</td>
+          <td>${item.number}</td>
+          <td>${item.gmail}</td>
+          <td>${item.location}</td>
+          <td>${item.username}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Call the function to display items when the page loads
+    window.onload = displayItems;
+  </script>
+</body>
+</html>
