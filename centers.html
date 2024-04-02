@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Center Info</title>
+  <style>
+    /* Add some basic styling for buttons and tables */
+    .button-container {
+      text-align: center;
+      margin: 50px auto;
+    }
+    .button-container button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Center Information</h1>
+
+  <div class="button-container">
+    <button onclick="showPrinters()">Show Printers</button>
+    <button onclick="showJobs()">Show Jobs</button>
+  </div>
+
+  <div id="printersTable" style="display: none;">
+    <h2>Printers Table</h2>
+    <table id="printers">
+      <!-- Printer table will be displayed here -->
+    </table>
+  </div>
+
+  <div id="jobsTable" style="display: none;">
+    <h2>Printer Jobs</h2>
+    <table id="jobs">
+      <!-- Job table will be displayed here -->
+    </table>
+  </div>
+
+  <script>
+    // Simulated printer data and jobs (replace this with your actual data retrieval method)
+    const printersData = [
+      { id: 1, name: 'Printer 1', status: 'Online' },
+      { id: 2, name: 'Printer 2', status: 'Offline' },
+      // Add more printer data as needed
+    ];
+
+    const jobsData = [
+      { id: 1, user: 'John Doe', pages: 5 },
+      { id: 2, user: 'Jane Smith', pages: 3 },
+      // Add more job data as needed
+    ];
+
+    function showPrinters() {
+      document.getElementById('printersTable').style.display = 'block';
+      document.getElementById('jobsTable').style.display = 'none';
+
+      const printersTable = document.getElementById('printers');
+      renderTable(printersData, printersTable, ['ID', 'Name', 'Status']);
+    }
+
+    function showJobs() {
+      document.getElementById('jobsTable').style.display = 'block';
+      document.getElementById('printersTable').style.display = 'none';
+
+      const jobsTable = document.getElementById('jobs');
+      renderTable(jobsData, jobsTable, ['ID', 'User', 'Pages']);
+    }
+
+    function renderTable(data, tableElement, headers) {
+      // Clear existing table data
+      while (tableElement.firstChild) {
+        tableElement.removeChild(tableElement.firstChild);
+      }
+
+      // Create table headers
+      const headerRow = document.createElement('tr');
+      headers.forEach(headerText => {
+        const th = document.createElement('th');
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+      });
+      tableElement.appendChild(headerRow);
+
+      // Create table rows with data
+      data.forEach(item => {
+        const row = document.createElement('tr');
+        Object.values(item).forEach(value => {
+          const cell = document.createElement('td');
+          cell.textContent = value;
+          row.appendChild(cell);
+        });
+        tableElement.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>
+
